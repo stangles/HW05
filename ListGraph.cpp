@@ -1,4 +1,4 @@
-#include "MatrixGraph.h"
+#include "ListGraph.h"
 
 void addEdge(NodeID u, NodeID v, EdgeWeight weight)
 {
