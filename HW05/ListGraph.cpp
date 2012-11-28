@@ -8,12 +8,12 @@ ListGraph::~ListGraph()
 {
 }
 
-//modifiers
+//modifier
 void ListGraph::addEdge(NodeID u, NodeID v, EdgeWeight weight)
 {
 }
 
-//inspectors
+//begin inspectors
 EdgeWeight ListGraph::weight(NodeID u, NodeID v) const
 {
 }
