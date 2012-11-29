@@ -39,13 +39,29 @@ EdgeWeight MatrixGraph::weight(NodeID u, NodeID v) const
 
 std::list<NWPair> MatrixGraph::getAdj(NodeID u) const
 {
-	std::list<NWPair> l;
-	return l;
+	std::list<NWPair> NWPList;
+	if(u >= 0 && u < M.size()) {
+		int count = 0;
+		for(std::vector<EdgeWeight>::const_iterator it = M.at(u).begin(); it != M.at(u).end(); it++) {
+			if(*it > 0.0) {
+				NWPList.push_front(NWPair(count, *it));
+			}
+			count++;
+		}
+	}
+	return NWPList;
 }
 
 unsigned MatrixGraph::degree(NodeID u) const
 {
-	return 0;
+	unsigned count = 0;
+	if(u >= 0 && u < M.size()) {
+		for(std::vector<EdgeWeight>::const_iterator it = M.at(u).begin(); it != M.at(u).end(); it++) {
+			if(*it > 0.0)
+				count++;
+		}
+	}
+	return count;
 }
 
 unsigned MatrixGraph::size() const
