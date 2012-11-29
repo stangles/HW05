@@ -50,14 +50,21 @@ std::list<NWPair> ListGraph::getAdj(NodeID u) const
 {
 	std::list<NWPair> NWPList;
 	if(u >= 0 && u < edgeList.size()) {
-
+		NWPList = edgeList[u];
 	}
 	return NWPList;
 }
 
 unsigned ListGraph::degree(NodeID u) const
 {
-	return 0;
+	int count = 0;
+	if(u >= 0 && u < edgeList.size()) {
+		EList::const_iterator it;
+		for(it=edgeList[u].begin(); it != edgeList[u].end(); it++) {
+			count++;
+		}
+	}
+	return count;
 }
 
 unsigned ListGraph::size() const
