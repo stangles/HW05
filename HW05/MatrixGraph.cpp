@@ -3,7 +3,7 @@
 MatrixGraph::MatrixGraph(unsigned num_nodes)
 {
 	num_edges = 0;
-	M.resize(num_edges, std::vector<EdgeWeight>(num_edges, 0));
+	M.resize(num_nodes, std::vector<EdgeWeight>(num_nodes, 0.0));
 	//M = std::vector<std::vector<EdgeWeight> > (num_nodes, std::vector<EdgeWeight>(num_nodes, 0));
 	//std::vector<std::vector<EdgeWeight> > M (num_nodes, std::vector<EdgeWeight>(num_nodes));
 }
@@ -15,7 +15,17 @@ MatrixGraph::~MatrixGraph()
 //modifier
 void MatrixGraph::addEdge(NodeID u, NodeID v, EdgeWeight weight)
 {
-	for(M.begin()
+	if((u >= 0 && u < M.size()) && (v >= 0 && v < M.size())) { //are u and v within bounds?
+		if(u != v) {//does u equal v? keep nodes from connecting to self.
+			if(M.at(u).at(v) == 0.0) { //does an edge exist already?
+				if(weight > 0.0) { //is this a valid edge weight?
+					M[u][v] = weight; //will I ever stop asking questions?
+					M[v][u] = weight;
+					num_edges++;
+				}
+			}
+		}
+	}
 }
 
 //begin inspectors
@@ -40,7 +50,7 @@ unsigned MatrixGraph::degree(NodeID u) const
 
 unsigned MatrixGraph::size() const
 {
-	return 0;
+	return M.size();
 }
 
 unsigned MatrixGraph::numEdges() const
