@@ -21,3 +21,6 @@
  */
 
 std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G);
+void tour(int* arr, int n, int startingPt);
+void swap(int* arr, int index1, int index2);
+EdgeWeight tour_length(int* tour);
