@@ -21,6 +21,14 @@
  */
 
 std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G);
-void tour(int* arr, int n, int startingPt);
-void swap(int* arr, int index1, int index2);
-EdgeWeight tour_length(int* tour);
+
+/*
+ * Helper methods for solving TSP
+ */
+
+//Recursive exhaustive path search method
+void tour(NodeID* arr, int n, int startingPt);
+//Swaps arr[index1] and arr[index2]
+void swap(NodeID* arr, int index1, int index2);
+//Calculates the length of a path given an array of NodeIDs
+EdgeWeight tour_length(NodeID* tour, int arr_length);
